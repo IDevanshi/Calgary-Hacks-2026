@@ -379,129 +379,6 @@
             }
         ]
     },
-    "ani": {
-        "language": "Andi",
-        "latitude": "42.8078",
-        "longitude": "46.2919",
-        "speakers_estimate": null,
-        "endangerment_status": "threatened",
-        "countries": [],
-        "writing_systems": [
-            "Latin script"
-        ],
-        "alphabets": {
-            "Latin script": [
-                "A",
-                "B",
-                "C",
-                "D",
-                "E",
-                "F",
-                "G",
-                "H",
-                "I",
-                "J",
-                "K",
-                "L",
-                "M",
-                "N",
-                "O",
-                "P",
-                "Q",
-                "R",
-                "S",
-                "T",
-                "U",
-                "V",
-                "W",
-                "X",
-                "Y",
-                "Z",
-                "a",
-                "b",
-                "c",
-                "d",
-                "e",
-                "f",
-                "g",
-                "h",
-                "i",
-                "j",
-                "k",
-                "l",
-                "m",
-                "n",
-                "o",
-                "p",
-                "q",
-                "r",
-                "s",
-                "t",
-                "u",
-                "v",
-                "w",
-                "x",
-                "y",
-                "z",
-                "À",
-                "Á",
-                "Â",
-                "Ã",
-                "Ä",
-                "Å",
-                "Æ",
-                "Ç",
-                "È",
-                "É",
-                "Ê",
-                "Ë",
-                "Ì",
-                "Í",
-                "Î",
-                "Ï",
-                "Ð",
-                "Ñ",
-                "Ò",
-                "Ó",
-                "Ô",
-                "Õ",
-                "Ö",
-                "×",
-                "Ø",
-                "Ù",
-                "Ú",
-                "Û",
-                "Ü",
-                "Ý",
-                "Þ",
-                "ß",
-                "à",
-                "á",
-                "â",
-                "ã",
-                "ä",
-                "å",
-                "æ",
-                "ç",
-                "è",
-                "é",
-                "ê",
-                "ë",
-                "ì",
-                "í",
-                "î",
-                "ï"
-            ]
-        },
-        "language_family": [],
-        "early_forms": [],
-        "wikidata_id": "Q17486145",
-        "wikipedia_page": "https://en.wikipedia.org/wiki/Andi_(given_name)",
-        "dictionary_links": [
-            "https://en.wiktionary.org/wiki/Andi"
-        ],
-        "summary": "Andy, also spelled Andye or Andee, is predominantly a diminutive version of the male given name Andrew, and variants of it such as Andreas, Andrés, and Andrei. The form of the variation is based on the Scottish \"-ie\" diminutive ending. Andrew is derived from the Greek name Andreas, meaning \"manlike\" or \"brave\". Andy is also occasionally used as a diminutive for the female given name Andrea."
-    },
     "awa": {
         "language": "Awadhi",
         "speakers_estimate": 22000000,
@@ -797,31 +674,6 @@
             }
         ]
     },
-    "bjn": {
-        "language": "Banjar",
-        "speakers_estimate": null,
-        "endangerment_status": "not endangered",
-        "countries": [
-            "Indonesia"
-        ],
-        "writing_systems": [],
-        "alphabets": {},
-        "language_family": [],
-        "early_forms": [],
-        "wikidata_id": "Q14171",
-        "wikipedia_page": "https://en.wikipedia.org/wiki/Banjar_Regency",
-        "dictionary_links": [
-            "https://en.wiktionary.org/wiki/Banjar"
-        ],
-        "summary": "Banjar Regency is one of the eleven regencies in the Indonesian province of South Kalimantan; the capital is Martapura. It covers an area of 4,668.5 km2, and had a population of 506,839 at the 2010 Census, and 565,635 at the 2020 Census; the official estimate as at mid 2024 was 584,684. It lies immediately to the east of the city of Banjarmasin and north of the city of Banjarbaru, which it surrounds on the latter's west, north and east sides; the regency capital of Martapura is immediately north of Banjarbaru, of which it is effectively an extension. This regency is noted for its diamond mines and its people's religiosity. Motto: \"Barakat\" (Banjarese:\"Blessing\").",
-        "locations": [
-            {
-                "name": "Indonesia",
-                "lat": -0.7893,
-                "lng": 113.9213
-            }
-        ]
-    },
     "bak": {
         "language": "Bashkir",
         "speakers_estimate": 1200000,
@@ -1082,31 +934,6 @@
                 "name": "Ukraine",
                 "lat": 48.3794,
                 "lng": 31.1656
-            }
-        ]
-    },
-    "bej": {
-        "language": "Beja",
-        "speakers_estimate": null,
-        "endangerment_status": "not endangered",
-        "countries": [
-            "Portugal"
-        ],
-        "writing_systems": [],
-        "alphabets": {},
-        "language_family": [],
-        "early_forms": [],
-        "wikidata_id": "Q213251",
-        "wikipedia_page": "https://en.wikipedia.org/wiki/Beja,_Portugal",
-        "dictionary_links": [
-            "https://en.wiktionary.org/wiki/Beja"
-        ],
-        "summary": "Beja, officially the City of Beja, is a city and a municipality in the Alentejo region, Portugal. The population in 2011 was 35,854, in an area of 1,146.44 km2 (442.64 sq mi). The city proper had a population of 21,658 in 2001.",
-        "locations": [
-            {
-                "name": "Portugal",
-                "lat": 39.3999,
-                "lng": -8.2245
             }
         ]
     },
@@ -1803,24 +1630,6 @@
             }
         ]
     },
-    "hoc": {
-        "language": "Ho",
-        "latitude": "23.9596",
-        "longitude": "87.1188",
-        "speakers_estimate": null,
-        "endangerment_status": "not endangered",
-        "countries": [],
-        "writing_systems": [],
-        "alphabets": {},
-        "language_family": [],
-        "early_forms": [],
-        "wikidata_id": "Q1846",
-        "wikipedia_page": "https://en.wikipedia.org/wiki/Holmium",
-        "dictionary_links": [
-            "https://en.wiktionary.org/wiki/Ho"
-        ],
-        "summary": "Holmium is a chemical element; it has symbol Ho and atomic number 67. It is a rare-earth element and the eleventh member of the lanthanide series of elements. It is a relatively soft, silvery, fairly corrosion-resistant and malleable metal. Like many other lanthanides, holmium is too reactive to be found in native form, as pure holmium slowly forms a yellowish oxide coating when exposed to air. When isolated, holmium is relatively stable in dry air at room temperature. However, it reacts with water and corrodes readily, and also burns in air when heated."
-    },
     "kfp": {
         "language": "Korwa",
         "speakers_estimate": 570000,
@@ -2342,7 +2151,7 @@
     },
     "ugh": {
         "language": "Kubachi",
-        "speakers_estimate": null,
+        "speakers_estimate": 7000,
         "endangerment_status": "not endangered",
         "countries": [
             "Russia"
@@ -2477,7 +2286,7 @@
     },
     "key": {
         "language": "Kupia",
-        "speakers_estimate": null,
+        "speakers_estimate": 6600,
         "endangerment_status": "threatened",
         "countries": [
             "India"
@@ -3382,86 +3191,9 @@
             }
         ]
     },
-    "apc": {
-        "language": "Levantine Arabic",
-        "latitude": "34.1709",
-        "longitude": "36.0468",
-        "speakers_estimate": null,
-        "endangerment_status": "not endangered",
-        "countries": [],
-        "writing_systems": [],
-        "alphabets": {},
-        "language_family": [
-            "Arab sign-language family",
-            "sign language",
-            "signed language",
-            "manual communication",
-            "communication",
-            "information exchange",
-            "transfer",
-            "change",
-            "occurrent",
-            "entity",
-            "interaction",
-            "effect",
-            "action",
-            "occurrence",
-            "relation",
-            "property",
-            "abstract entity",
-            "human communication",
-            "human behavior",
-            "behavior",
-            "pattern",
-            "regularity",
-            "animal communication",
-            "biocommunication",
-            "animal behavior",
-            "multicellular organismal process",
-            "biological process",
-            "biological phenomenon",
-            "natural phenomenon",
-            "phenomenon",
-            "observable entity",
-            "physical phenomenon",
-            "physical process",
-            "physicochemical process",
-            "process",
-            "sequence",
-            "function",
-            "binary relation",
-            "set",
-            "class",
-            "mathematical object",
-            "scientific object",
-            "object",
-            "mathematical structure",
-            "abstract structure",
-            "multiset",
-            "algebraic structure",
-            "structure",
-            "possibly infinitary structure",
-            "relation (mathematics)",
-            "partial function",
-            "multivalued function",
-            "serial relation",
-            "generalized function",
-            "collective entity",
-            "intentional human activity",
-            "human activity",
-            "activity"
-        ],
-        "early_forms": [],
-        "wikidata_id": "Q6534917",
-        "wikipedia_page": "https://en.wikipedia.org/wiki/Levantine_Arabic_Sign_Language",
-        "dictionary_links": [
-            "https://en.wiktionary.org/wiki/Levantine_Arabic"
-        ],
-        "summary": "Levantine Arabic Sign Language is the sign language used by people of the area known as Bilad al-Sham or the Levant, comprising Jordan, Palestine, Syria, and Lebanon. Although there are significant differences in vocabulary between the four states, this is not much greater than regional differences within the states. Grammar is quite uniform and mutual intelligibility is high, indicating that they are dialects of a single language."
-    },
     "lhm": {
         "language": "Lhomi",
-        "speakers_estimate": null,
+        "speakers_estimate": 5800,
         "endangerment_status": "threatened",
         "countries": [
             "India",
@@ -3611,7 +3343,7 @@
     },
     "loy": {
         "language": "Lowa",
-        "speakers_estimate": null,
+        "speakers_estimate": 8800,
         "endangerment_status": "shifting",
         "countries": [
             "Nepal"
@@ -4680,146 +4412,6 @@
             }
         ]
     },
-    "heb": {
-        "language": "Modern Hebrew",
-        "speakers_estimate": null,
-        "endangerment_status": "not endangered",
-        "countries": [
-            "Israel"
-        ],
-        "writing_systems": [
-            "Hebrew alphabet"
-        ],
-        "alphabets": {
-            "Hebrew alphabet": [
-                "֐",
-                "֑",
-                "֒",
-                "֓",
-                "֔",
-                "֕",
-                "֖",
-                "֗",
-                "֘",
-                "֙",
-                "֚",
-                "֛",
-                "֜",
-                "֝",
-                "֞",
-                "֟",
-                "֠",
-                "֡",
-                "֢",
-                "֣",
-                "֤",
-                "֥",
-                "֦",
-                "֧",
-                "֨",
-                "֩",
-                "֪",
-                "֫",
-                "֬",
-                "֭",
-                "֮",
-                "֯",
-                "ְ",
-                "ֱ",
-                "ֲ",
-                "ֳ",
-                "ִ",
-                "ֵ",
-                "ֶ",
-                "ַ",
-                "ָ",
-                "ֹ",
-                "ֺ",
-                "ֻ",
-                "ּ",
-                "ֽ",
-                "־",
-                "ֿ",
-                "׀",
-                "ׁ",
-                "ׂ",
-                "׃",
-                "ׄ",
-                "ׅ",
-                "׆",
-                "ׇ",
-                "׈",
-                "׉",
-                "׊",
-                "׋",
-                "׌",
-                "׍",
-                "׎",
-                "׏",
-                "א",
-                "ב",
-                "ג",
-                "ד",
-                "ה",
-                "ו",
-                "ז",
-                "ח",
-                "ט",
-                "י",
-                "ך",
-                "כ",
-                "ל",
-                "ם",
-                "מ",
-                "ן",
-                "נ",
-                "ס",
-                "ע",
-                "ף",
-                "פ",
-                "ץ",
-                "צ",
-                "ק",
-                "ר",
-                "ש",
-                "ת",
-                "׫",
-                "׬",
-                "׭",
-                "׮",
-                "ׯ",
-                "װ",
-                "ױ",
-                "ײ",
-                "׳"
-            ]
-        },
-        "language_family": [
-            "Hebrew",
-            "Canaanite",
-            "Northwest Semitic",
-            "Central Semitic",
-            "West Semitic",
-            "Semitic",
-            "Afroasiatic",
-            "Nostratic",
-            "Jewish languages"
-        ],
-        "early_forms": [],
-        "wikidata_id": "Q8141",
-        "wikipedia_page": "https://en.wikipedia.org/wiki/Modern_Hebrew",
-        "dictionary_links": [
-            "https://en.wiktionary.org/wiki/Modern_Hebrew"
-        ],
-        "summary": "Modern Hebrew, also known as Israeli Hebrew or simply Hebrew, is the standard form of the Hebrew language spoken today. It is the only extant Canaanite language, as well as one of the oldest attested languages to be spoken as a first language in the modern day, on account of Hebrew being attested since the 2nd millennium BC. It uses the Hebrew Alphabet, an abjad script written from right-to-left. The current standard was codified as part of the revival of Hebrew in the late 19th and early 20th centuries, and now serves as the official and national language of the State of Israel, where it is predominantly spoken by over 10 million people. Thus, Modern Hebrew is nearly universally regarded as the most successful instance of language revitalization in history.",
-        "locations": [
-            {
-                "name": "Israel",
-                "lat": 31.0461,
-                "lng": 34.8516
-            }
-        ]
-    },
     "bxm": {
         "language": "Mongolia Buriat",
         "speakers_estimate": 42500,
@@ -5065,7 +4657,7 @@
     },
     "crm": {
         "language": "Moose Cree",
-        "speakers_estimate": null,
+        "speakers_estimate": 3000,
         "endangerment_status": "threatened",
         "countries": [
             "Canada"
@@ -5207,7 +4799,7 @@
     },
     "mmk": {
         "language": "Mukha-Dora",
-        "speakers_estimate": null,
+        "speakers_estimate": 30000,
         "endangerment_status": "not endangered",
         "countries": [
             "India"
@@ -5340,7 +4932,7 @@
     },
     "bgd": {
         "language": "Rathwi Bareli",
-        "speakers_estimate": null,
+        "speakers_estimate": 359000,
         "endangerment_status": "not endangered",
         "countries": [
             "India"
