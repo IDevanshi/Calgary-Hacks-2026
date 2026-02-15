@@ -135,11 +135,7 @@ const VillagerChat = () => {
                 onClick={handleRandom}
                 className="minecraft-btn px-4 py-3 font-pixel text-[9px] text-foreground text-left leading-relaxed"
               >
-<<<<<<< HEAD
-                Take me on a language adventure!
-=======
                 Take me on a language adventure
->>>>>>> 4186266 (aligning everything with databse)
               </button>
               <button
                 onClick={handleHome}

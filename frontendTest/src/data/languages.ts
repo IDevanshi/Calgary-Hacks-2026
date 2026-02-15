@@ -32,6 +32,7 @@ interface RawDatabaseLanguage {
   language_code?: string;
   speakers_estimate: number | string | null;
   countries: string[];
+  locations?: Array<{ name: string; lat: number | string; lng: number | string }>;
   writing_systems?: string[];
   alphabets?: Record<string, string[]>;
   language_family?: string[];
@@ -95,6 +96,18 @@ const getAge = (raw: RawDatabaseLanguage): string => {
 };
 
 const buildLocations = (raw: RawDatabaseLanguage): LanguageLocation[] => {
+  if (raw.locations && raw.locations.length > 0) {
+    const mapped = raw.locations
+      .map((loc) => {
+        const lat = parseCoordinate(loc.lat);
+        const lng = parseCoordinate(loc.lng);
+        if (lat === null || lng === null) return null;
+        return { name: loc.name || raw.language, lat, lng };
+      })
+      .filter((loc): loc is LanguageLocation => loc !== null);
+    if (mapped.length > 0) return mapped;
+  }
+
   const lat = parseCoordinate(raw.latitude);
   const lng = parseCoordinate(raw.longitude);
 
@@ -151,6 +164,9 @@ const fetchLanguages = async (): Promise<Language[]> => {
   const baseUrl = import.meta.env.BASE_URL || '/';
   const normalizedBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
   const candidates = [
+    `${normalizedBase}new_database.json`,
+    '/new_database.json',
+    '/static/new_database.json',
     `${normalizedBase}database.json`,
     '/database.json',
     '/static/database.json',

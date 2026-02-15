@@ -20,6 +20,8 @@ const statusColors: Record<string, string> = {
 
 const getStatusBucket = (status: string): keyof typeof statusColors => {
   const normalized = status.toLowerCase();
+  if (normalized.includes('not endangered')) return 'active';
+  if (normalized.includes('threatened')) return 'endangered';
   if (normalized.includes('extinct') || normalized.includes('dormant')) return 'extinct';
   if (normalized.includes('vulnerable')) return 'vulnerable';
   if (normalized.includes('endangered')) return 'endangered';

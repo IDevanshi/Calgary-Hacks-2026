@@ -6,6 +6,8 @@ import { useLanguages } from '@/data/languages';
 
 const getStatusClass = (status: string): string => {
   const normalized = status.toLowerCase();
+  if (normalized.includes('not endangered')) return 'status-active';
+  if (normalized.includes('threatened')) return 'status-endangered';
   if (normalized.includes('extinct') || normalized.includes('dormant')) return 'status-extinct';
   if (normalized.includes('vulnerable')) return 'status-vulnerable';
   if (normalized.includes('endangered')) return 'status-endangered';
