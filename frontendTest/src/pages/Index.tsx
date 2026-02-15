@@ -35,7 +35,7 @@ const Index = () => {
 
       <footer className="bg-minecraft-dirt minecraft-border border-b-0 border-x-0 px-4 py-2 text-center">
         <p className="font-pixel text-[8px] text-primary-foreground">
-          LinguaCraft - Preserving the world's languages, one block at a time
+          LingoCraft - Preserving the world's languages, one block at a time
         </p>
       </footer>
     </div>

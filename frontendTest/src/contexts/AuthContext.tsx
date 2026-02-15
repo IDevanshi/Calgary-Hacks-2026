@@ -13,17 +13,17 @@ const AuthContext = createContext<AuthContextType>({
 });
 
 const ADMIN_USERNAME = 'admin';
-const ADMIN_PASSWORD = 'linguacraft2026';
+const ADMIN_PASSWORD = 'lingocraft2026';
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAdmin, setIsAdmin] = useState(() => {
-    return sessionStorage.getItem('linguacraft_admin') === 'true';
+    return sessionStorage.getItem('lingocraft_admin') === 'true';
   });
 
   const login = (username: string, password: string) => {
     if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
       setIsAdmin(true);
-      sessionStorage.setItem('linguacraft_admin', 'true');
+      sessionStorage.setItem('lingocraft_admin', 'true');
       return true;
     }
     return false;
@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const logout = () => {
     setIsAdmin(false);
-    sessionStorage.removeItem('linguacraft_admin');
+    sessionStorage.removeItem('lingocraft_admin');
   };
 
   return (

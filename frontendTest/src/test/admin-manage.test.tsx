@@ -55,7 +55,7 @@ describe('Admin manage route', () => {
   });
 
   it('shows admin manage page for authenticated admin', () => {
-    sessionStorage.setItem('linguacraft_admin', 'true');
+    sessionStorage.setItem('lingocraft_admin', 'true');
 
     renderAdminManage();
 

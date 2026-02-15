@@ -10,7 +10,7 @@ const AuthProbe = () => {
     <div>
       <span data-testid="admin-state">{isAdmin ? 'admin' : 'guest'}</span>
       <button onClick={() => login('bad', 'creds')}>bad-login</button>
-      <button onClick={() => login('admin', 'linguacraft2026')}>good-login</button>
+      <button onClick={() => login('admin', 'lingocraft2026')}>good-login</button>
       <button onClick={logout}>logout</button>
     </div>
   );
@@ -32,14 +32,14 @@ describe('AuthContext', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'bad-login' }));
     expect(screen.getByTestId('admin-state')).toHaveTextContent('guest');
-    expect(sessionStorage.getItem('linguacraft_admin')).toBeNull();
+    expect(sessionStorage.getItem('lingocraft_admin')).toBeNull();
 
     fireEvent.click(screen.getByRole('button', { name: 'good-login' }));
     expect(screen.getByTestId('admin-state')).toHaveTextContent('admin');
-    expect(sessionStorage.getItem('linguacraft_admin')).toBe('true');
+    expect(sessionStorage.getItem('lingocraft_admin')).toBe('true');
 
     fireEvent.click(screen.getByRole('button', { name: 'logout' }));
     expect(screen.getByTestId('admin-state')).toHaveTextContent('guest');
-    expect(sessionStorage.getItem('linguacraft_admin')).toBeNull();
+    expect(sessionStorage.getItem('lingocraft_admin')).toBeNull();
   });
 });

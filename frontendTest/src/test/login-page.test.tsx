@@ -38,10 +38,10 @@ describe('Login page', () => {
     renderLoginFlow();
 
     fireEvent.change(screen.getByPlaceholderText('Username'), { target: { value: 'admin' } });
-    fireEvent.change(screen.getByPlaceholderText('Password'), { target: { value: 'linguacraft2026' } });
+    fireEvent.change(screen.getByPlaceholderText('Password'), { target: { value: 'lingocraft2026' } });
     fireEvent.click(screen.getByRole('button', { name: 'Log In' }));
 
     expect(screen.getByText('Home Test Page')).toBeInTheDocument();
-    expect(sessionStorage.getItem('linguacraft_admin')).toBe('true');
+    expect(sessionStorage.getItem('lingocraft_admin')).toBe('true');
   });
 });
