@@ -35,6 +35,9 @@ SECRET_KEY=add_your_secret_key_here
 1) Go to the frontendTest directory on your terminal.
 2) Type: npm install
 3) Type: npm run dev
+4) This will start the application on localhost by default and you may explore the application
 
-This will start the application on localhost by default and you may explore the application
+OR
+
+4) Just click on this link: https://69921f1cd6f2e5089bf7e6da--fantastic-mooncake-e4f085.netlify.app
 
