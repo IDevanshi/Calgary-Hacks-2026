@@ -172,9 +172,6 @@ const fetchLanguages = async (): Promise<Language[]> => {
     `${normalizedBase}new_database.json`,
     '/new_database.json',
     '/static/new_database.json',
-    `${normalizedBase}database.json`,
-    '/database.json',
-    '/static/database.json',
   ];
   let raw: RawLanguageCollection | null = null;
   const failed: string[] = [];
