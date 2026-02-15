@@ -74,8 +74,13 @@ const parseCoordinate = (value: RawDatabaseLanguage['latitude']): number | null 
 };
 
 const getStatus = (rawStatus: string | undefined): string => {
-  if (rawStatus && rawStatus.trim()) return rawStatus.trim();
-  return 'unknown';
+  if (!rawStatus || !rawStatus.trim()) return 'active';
+  const normalized = rawStatus.trim().toLowerCase();
+  if (normalized.includes('not endangered') || normalized === 'active') return 'active';
+  if (normalized.includes('threatened') || normalized.includes('shifting') || normalized.includes('vulnerable')) return 'threatened';
+  if (normalized.includes('nearly extinct') || normalized.includes('endangered')) return 'nearly extinct';
+  if (normalized.includes('extinct') || normalized.includes('dormant')) return 'extinct';
+  return rawStatus.trim().toLowerCase();
 };
 
 const getAlphabet = (raw: RawDatabaseLanguage): string => {

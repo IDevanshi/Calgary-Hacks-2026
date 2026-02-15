@@ -57,8 +57,8 @@
     --minecraft-darkgreen: 120 40% 22%;
 
     --status-active: 120 50% 35%;
-    --status-endangered: 0 70% 45%;
-    --status-vulnerable: 35 80% 50%;
+    --status-threatened: 35 80% 50%;
+    --status-nearly-extinct: 0 70% 45%;
     --status-extinct: 270 50% 45%;
   }
 }
@@ -174,14 +174,14 @@
     color: hsl(var(--primary-foreground));
   }
 
-  .status-endangered {
-    background: hsl(var(--status-endangered));
+  .status-threatened {
+    background: hsl(var(--status-threatened));
     color: hsl(var(--primary-foreground));
   }
 
-  .status-vulnerable {
-    background: hsl(var(--status-vulnerable));
-    color: hsl(var(--accent-foreground));
+  .status-nearly-extinct {
+    background: hsl(var(--status-nearly-extinct));
+    color: hsl(var(--primary-foreground));
   }
 
   .status-extinct {

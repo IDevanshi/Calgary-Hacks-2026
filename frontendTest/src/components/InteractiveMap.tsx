@@ -11,27 +11,25 @@ import {
   type ZoomTier,
 } from '@/lib/clusterMarkers';
 
-const statusColors: Record<string, string> = {
+type StatusBucket = 'active' | 'threatened' | 'nearly-extinct' | 'extinct';
+
+const statusColors: Record<StatusBucket, string> = {
   active: 'hsl(120, 50%, 35%)',
-  endangered: 'hsl(0, 70%, 45%)',
-  vulnerable: 'hsl(35, 80%, 50%)',
+  threatened: 'hsl(35, 80%, 50%)',
+  'nearly-extinct': 'hsl(0, 70%, 45%)',
   extinct: 'hsl(270, 50%, 45%)',
 };
 
-const getStatusBucket = (status: string): keyof typeof statusColors => {
+const getStatusBucket = (status: string): StatusBucket => {
   const normalized = status.toLowerCase();
-  if (normalized.includes('not endangered')) return 'active';
-  if (normalized.includes('threatened')) return 'endangered';
+  if (normalized.includes('active') || normalized.includes('not endangered')) return 'active';
+  if (normalized.includes('threatened') || normalized.includes('shifting') || normalized.includes('vulnerable')) return 'threatened';
+  if (normalized.includes('nearly extinct') || normalized.includes('endangered')) return 'nearly-extinct';
   if (normalized.includes('extinct') || normalized.includes('dormant')) return 'extinct';
-  if (normalized.includes('vulnerable')) return 'vulnerable';
-  if (normalized.includes('endangered')) return 'endangered';
   return 'active';
 };
 
-const getStatusClass = (status: string): string => {
-  const bucket = getStatusBucket(status);
-  return `status-${bucket}`;
-};
+const getStatusClass = (status: string): string => `status-${getStatusBucket(status)}`;
 
 interface InteractiveMapProps {
   flyTo?: { lat: number; lng: number; zoom?: number } | null;
@@ -437,10 +435,10 @@ const InteractiveMap = ({ flyTo, flyToLangId }: InteractiveMapProps) => {
       {/* Color legend */}
       <div className="absolute bottom-4 left-3 z-[2500] minecraft-border bg-card px-3 py-2 space-y-1.5">
         <span className="font-pixel text-[7px] text-muted-foreground uppercase tracking-wider block mb-1">Legend</span>
-        {Object.entries(statusColors).map(([status, color]) => (
+        {(['active', 'threatened', 'nearly-extinct', 'extinct'] as const).map((status) => (
           <div key={status} className="flex items-center gap-2">
-            <span className="inline-block w-3 h-3 rounded-full" style={{ background: color }} />
-            <span className="font-pixel text-[7px] text-foreground">{status}</span>
+            <span className="inline-block w-3 h-3 rounded-full" style={{ background: statusColors[status] }} />
+            <span className="font-pixel text-[7px] text-foreground">{status.replace('-', ' ')}</span>
           </div>
         ))}
       </div>

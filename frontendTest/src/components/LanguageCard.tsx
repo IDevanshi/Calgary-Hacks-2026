@@ -4,11 +4,10 @@ import type { Language } from '@/data/languages';
 
 const getStatusClass = (status: string): string => {
   const normalized = status.toLowerCase();
-  if (normalized.includes('not endangered')) return 'status-active';
-  if (normalized.includes('threatened')) return 'status-endangered';
+  if (normalized.includes('active') || normalized.includes('not endangered')) return 'status-active';
+  if (normalized.includes('threatened') || normalized.includes('shifting') || normalized.includes('vulnerable')) return 'status-threatened';
+  if (normalized.includes('nearly extinct') || normalized.includes('endangered')) return 'status-nearly-extinct';
   if (normalized.includes('extinct') || normalized.includes('dormant')) return 'status-extinct';
-  if (normalized.includes('vulnerable')) return 'status-vulnerable';
-  if (normalized.includes('endangered')) return 'status-endangered';
   return 'status-active';
 };
 
