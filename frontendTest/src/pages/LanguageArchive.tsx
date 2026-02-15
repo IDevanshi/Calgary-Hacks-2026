@@ -16,7 +16,7 @@ const LanguageArchive = () => {
     return sorted.filter((l) =>
       l.name.toLowerCase().includes(search.toLowerCase())
     );
-  }, [search]);
+  }, [languages, search]);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -56,7 +56,7 @@ const LanguageArchive = () => {
             ))}
           </div>
         )}
-        {filtered.length === 0 && (
+        {!isLoading && !error && filtered.length === 0 && (
           <div className="minecraft-border bg-card p-8 text-center mt-4">
             <p className="font-pixel text-sm text-muted-foreground">
               No languages found. Hrmmm...
