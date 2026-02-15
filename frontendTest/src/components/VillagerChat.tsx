@@ -114,12 +114,12 @@ const VillagerChat = () => {
         <DialogContent className="minecraft-border bg-card border-0 max-w-md">
           <DialogHeader>
             <DialogTitle className="font-pixel text-sm text-foreground text-center">
-              🏘️ Language Villager
+              Language Villager
             </DialogTitle>
             <DialogDescription className="font-pixel-body text-lg text-muted-foreground text-center">
               {view === 'suggest' && submitted
                 ? ''
-                : 'Hrmmm... How can I help you, adventurer?'}
+                : 'Hmmm... How can I help you, adventurer?'}
             </DialogDescription>
           </DialogHeader>
 
@@ -129,19 +129,19 @@ const VillagerChat = () => {
                 onClick={() => { setView('suggest'); setSubmitted(false); setEmailError(''); setNameError(''); setInfoError(''); }}
                 className="minecraft-btn px-4 py-3 font-pixel text-[9px] text-foreground text-left leading-relaxed"
               >
-                📜 Suggest a missing language
+                Suggest a missing language
               </button>
               <button
                 onClick={handleRandom}
                 className="minecraft-btn px-4 py-3 font-pixel text-[9px] text-foreground text-left leading-relaxed"
               >
-                🎲 Take me on a language adventure!
+                Take me on a language adventure!
               </button>
               <button
                 onClick={handleHome}
                 className="minecraft-btn px-4 py-3 font-pixel text-[9px] text-foreground text-left leading-relaxed"
               >
-                🏠 Back to the main menu
+                Back to the main menu
               </button>
             </div>
           )}
