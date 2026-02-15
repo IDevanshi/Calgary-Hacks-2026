@@ -2,3 +2,7 @@ firebase-auth.json
 .env
 .venv/
 venv
+__pycache__/
+.DS_Store
+frontendTest/node_modules/
+frontendTest/dist/

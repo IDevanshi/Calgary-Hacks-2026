@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+@import url('https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 30% 92%;
+    --foreground: 25 30% 12%;
+
+    --card: 40 25% 88%;
+    --card-foreground: 25 30% 12%;
+
+    --popover: 40 25% 88%;
+    --popover-foreground: 25 30% 12%;
+
+    --primary: 120 35% 30%;
+    --primary-foreground: 40 30% 95%;
+
+    --secondary: 25 40% 35%;
+    --secondary-foreground: 40 30% 95%;
+
+    --muted: 40 20% 82%;
+    --muted-foreground: 25 15% 40%;
+
+    --accent: 45 80% 50%;
+    --accent-foreground: 25 30% 12%;
+
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 40 30% 95%;
+
+    --border: 25 25% 50%;
+    --input: 25 25% 50%;
+    --ring: 120 35% 30%;
+
+    --radius: 0px;
+
+    --sidebar-background: 25 40% 25%;
+    --sidebar-foreground: 40 30% 92%;
+    --sidebar-primary: 120 35% 30%;
+    --sidebar-primary-foreground: 40 30% 95%;
+    --sidebar-accent: 25 35% 30%;
+    --sidebar-accent-foreground: 40 30% 92%;
+    --sidebar-border: 25 25% 40%;
+    --sidebar-ring: 120 35% 30%;
+
+    --minecraft-grass: 120 45% 35%;
+    --minecraft-dirt: 25 45% 30%;
+    --minecraft-stone: 0 0% 55%;
+    --minecraft-wood: 30 40% 40%;
+    --minecraft-gold: 45 85% 55%;
+    --minecraft-sky: 210 60% 55%;
+    --minecraft-water: 210 55% 45%;
+    --minecraft-red: 0 70% 45%;
+    --minecraft-darkgreen: 120 40% 22%;
+
+    --status-active: 120 50% 35%;
+    --status-endangered: 0 70% 45%;
+    --status-vulnerable: 35 80% 50%;
+    --status-extinct: 270 50% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'VT323', monospace;
+    image-rendering: pixelated;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Press Start 2P', cursive;
+  }
+}
+
+@layer utilities {
+  .font-pixel {
+    font-family: 'Press Start 2P', cursive;
+  }
+
+  .font-pixel-body {
+    font-family: 'VT323', monospace;
+  }
+
+  .minecraft-border {
+    border: 4px solid hsl(var(--border));
+    box-shadow: 
+      inset 2px 2px 0 hsl(40 25% 75%),
+      inset -2px -2px 0 hsl(25 30% 20%);
+  }
+
+  .minecraft-btn {
+    border: 3px solid hsl(var(--border));
+    box-shadow: 
+      inset 2px 2px 0 hsl(40 25% 78%),
+      inset -2px -2px 0 hsl(25 30% 25%);
+    background: hsl(var(--muted));
+    transition: all 0.1s;
+  }
+
+  .minecraft-btn:hover {
+    background: hsl(var(--accent));
+    box-shadow: 
+      inset 2px 2px 0 hsl(45 80% 70%),
+      inset -2px -2px 0 hsl(45 50% 35%);
+  }
+
+  .minecraft-btn:active {
+    box-shadow: 
+      inset -2px -2px 0 hsl(40 25% 78%),
+      inset 2px 2px 0 hsl(25 30% 25%);
+  }
+
+  .globe-container {
+    perspective: 1000px;
+  }
+
+  .globe {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 
+      inset -30px -30px 60px rgba(0,0,0,0.3),
+      0 0 40px rgba(0,0,0,0.2);
+    animation: globeRotate 20s linear infinite;
+  }
+
+  .globe-map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    object-fit: cover;
+    animation: mapScroll 20s linear infinite;
+  }
+
+  @keyframes mapScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .chat-bubble {
+    position: relative;
+    background: hsl(var(--card));
+    border: 3px solid hsl(var(--border));
+    box-shadow: 
+      inset 2px 2px 0 hsl(40 25% 75%),
+      inset -2px -2px 0 hsl(25 30% 20%);
+  }
+
+  .chat-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 30px;
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 12px solid hsl(var(--border));
+  }
+
+  .status-active {
+    background: hsl(var(--status-active));
+    color: hsl(var(--primary-foreground));
+  }
+
+  .status-endangered {
+    background: hsl(var(--status-endangered));
+    color: hsl(var(--primary-foreground));
+  }
+
+  .status-vulnerable {
+    background: hsl(var(--status-vulnerable));
+    color: hsl(var(--accent-foreground));
+  }
+
+  .status-extinct {
+    background: hsl(var(--status-extinct));
+    color: hsl(var(--primary-foreground));
+  }
+}
