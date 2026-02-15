@@ -114,22 +114,9 @@ const LanguageDetail = () => {
         {/* Origin */}
         <section className="minecraft-border bg-card p-5 mb-4">
           <h2 className="font-pixel text-sm text-foreground mb-3">Origin</h2>
-          <p className="font-pixel-body text-xl text-foreground leading-relaxed mb-3">
+          <p className="font-pixel-body text-xl text-foreground leading-relaxed">
             Language family: {language.languageFamily.length > 0 ? language.languageFamily.join(' > ') : language.family}
           </p>
-          <p className="font-pixel-body text-xl text-foreground leading-relaxed">{language.origin}</p>
-        </section>
-
-        {/* Tribes */}
-        <section className="minecraft-border bg-card p-5 mb-4">
-          <h2 className="font-pixel text-sm text-foreground mb-3">Tribes and Peoples</h2>
-          <div className="flex flex-wrap gap-2">
-            {language.tribes.map((tribe) => (
-              <span key={tribe} className="font-pixel-body text-lg text-foreground px-3 py-1 bg-muted/50">
-                {tribe}
-              </span>
-            ))}
-          </div>
         </section>
 
         {/* Alphabet */}
