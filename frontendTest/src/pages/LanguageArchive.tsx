@@ -2,9 +2,10 @@ import { useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import LanguageCard from '@/components/LanguageCard';
-import { languages } from '@/data/languages';
+import { useLanguages } from '@/data/languages';
 
 const LanguageArchive = () => {
+  const { data: languages = [], isLoading, error } = useLanguages();
   const [searchParams] = useSearchParams();
   const initialSearch = searchParams.get('search') || '';
   const [search, setSearch] = useState(initialSearch);
@@ -36,11 +37,25 @@ const LanguageArchive = () => {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map((lang) => (
-            <LanguageCard key={lang.id} language={lang} />
-          ))}
-        </div>
+        {isLoading && (
+          <div className="minecraft-border bg-card p-8 text-center mt-4">
+            <p className="font-pixel text-sm text-muted-foreground">Loading languages...</p>
+          </div>
+        )}
+
+        {error && (
+          <div className="minecraft-border bg-card p-8 text-center mt-4">
+            <p className="font-pixel text-sm text-destructive">Failed to load languages.</p>
+          </div>
+        )}
+
+        {!isLoading && !error && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {filtered.map((lang) => (
+              <LanguageCard key={lang.id} language={lang} />
+            ))}
+          </div>
+        )}
         {filtered.length === 0 && (
           <div className="minecraft-border bg-card p-8 text-center mt-4">
             <p className="font-pixel text-sm text-muted-foreground">

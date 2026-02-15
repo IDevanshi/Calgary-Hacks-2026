@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import { useAuth } from '@/contexts/AuthContext';
-import { languages } from '@/data/languages';
+import { useLanguages } from '@/data/languages';
 import { Volume2 } from 'lucide-react';
 
 const statusLabels: Record<string, string> = {
@@ -14,7 +14,34 @@ const statusLabels: Record<string, string> = {
 const LanguageDetail = () => {
   const { id } = useParams();
   const { isAdmin } = useAuth();
+  const { data: languages = [], isLoading, error } = useLanguages();
   const language = languages.find((l) => l.id === id);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col">
+        <Navbar />
+        <div className="flex-1 flex items-center justify-center">
+          <div className="minecraft-border bg-card p-8 text-center">
+            <h1 className="font-pixel text-lg text-foreground">Loading language...</h1>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col">
+        <Navbar />
+        <div className="flex-1 flex items-center justify-center">
+          <div className="minecraft-border bg-card p-8 text-center">
+            <h1 className="font-pixel text-lg text-foreground">Failed to load languages</h1>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (!language) {
     return (
@@ -135,7 +162,11 @@ const LanguageDetail = () => {
         {/* Dictionary button */}
         <div className="mb-4">
           <a
-            href={`https://en.wikipedia.org/wiki/${encodeURIComponent(language.name.replace(/\s*\(.*\)/, ''))}_language`}
+            href={
+              language.dictionaryLinks?.[0] ||
+              language.wikipediaPage ||
+              `https://en.wikipedia.org/wiki/${encodeURIComponent(language.name.replace(/\s*\(.*\)/, ''))}_language`
+            }
             target="_blank"
             rel="noopener noreferrer"
             className="minecraft-btn w-full px-4 py-3 font-pixel text-xs text-foreground block text-center"

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import Globe from 'react-globe.gl';
 import { useNavigate } from 'react-router-dom';
-import { languages } from '@/data/languages';
+import { useLanguages } from '@/data/languages';
 import {
   clusterMarkers,
   getZoomTier,
@@ -53,6 +53,7 @@ interface CountryLabelDatum {
 }
 
 const InteractiveMap = ({ flyTo, flyToLangId }: InteractiveMapProps) => {
+  const { data: languages = [] } = useLanguages();
   const globeRef = useRef<GlobeHandle | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 800, height: 600 });

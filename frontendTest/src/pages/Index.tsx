@@ -3,9 +3,10 @@ import { useMemo } from 'react';
 import Navbar from '@/components/Navbar';
 import InteractiveMap from '@/components/InteractiveMap';
 import VillagerChat from '@/components/VillagerChat';
-import { languages } from '@/data/languages';
+import { useLanguages } from '@/data/languages';
 
 const Index = () => {
+  const { data: languages = [] } = useLanguages();
   const [searchParams] = useSearchParams();
   const flyToLang = searchParams.get('flyTo');
   const flyToLoc = searchParams.get('loc');
@@ -18,7 +19,7 @@ const Index = () => {
     const loc = lang.locations[locIndex] || lang.locations[0];
     if (!loc) return null;
     return { lat: loc.lat, lng: loc.lng, zoom: 7 };
-  }, [flyToLang, flyToLoc]);
+  }, [flyToLang, flyToLoc, languages]);
 
   return (
     <div className="h-screen bg-background flex flex-col overflow-hidden">

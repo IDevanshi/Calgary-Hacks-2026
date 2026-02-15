@@ -2,15 +2,16 @@ import { useState, useMemo } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import { useAuth } from '@/contexts/AuthContext';
-import { languages } from '@/data/languages';
+import { useLanguages } from '@/data/languages';
 
 const AdminManage = () => {
   const { isAdmin } = useAuth();
+  const { data: languages = [], isLoading, error } = useLanguages();
   const [tab, setTab] = useState<'list' | 'add'>('list');
 
   const sortedLanguages = useMemo(
     () => [...languages].sort((a, b) => a.name.localeCompare(b.name)),
-    []
+    [languages]
   );
 
   if (!isAdmin) return <Navigate to="/login" replace />;
@@ -38,7 +39,17 @@ const AdminManage = () => {
 
         {tab === 'list' && (
           <div className="space-y-2">
-            {sortedLanguages.map((lang) => (
+            {isLoading && (
+              <div className="minecraft-border bg-card p-6 text-center">
+                <p className="font-pixel-body text-xl text-muted-foreground">Loading languages...</p>
+              </div>
+            )}
+            {error && (
+              <div className="minecraft-border bg-card p-6 text-center">
+                <p className="font-pixel-body text-xl text-destructive">Failed to load languages.</p>
+              </div>
+            )}
+            {!isLoading && !error && sortedLanguages.map((lang) => (
               <div key={lang.id} className="minecraft-border bg-card p-4 flex items-center justify-between">
                 <div>
                   <span className="font-pixel text-xs text-foreground">{lang.name}</span>

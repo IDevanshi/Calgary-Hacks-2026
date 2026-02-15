@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import villagerImg from '@/assets/villager.png';
-import { languages } from '@/data/languages';
+import { useLanguages } from '@/data/languages';
 import {
   Dialog,
   DialogContent,
@@ -15,6 +15,7 @@ type VillagerView = 'menu' | 'suggest' | 'random';
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 const VillagerChat = () => {
+  const { data: languages = [] } = useLanguages();
   const [open, setOpen] = useState(false);
   const [view, setView] = useState<VillagerView>('menu');
   const [suggestName, setSuggestName] = useState('');
@@ -84,6 +85,7 @@ const VillagerChat = () => {
   };
 
   const handleRandom = () => {
+    if (languages.length === 0) return;
     const random = languages[Math.floor(Math.random() * languages.length)];
     setOpen(false);
     navigate(`/language/${random.id}`);

@@ -1,9 +1,34 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, beforeEach, it, expect } from 'vitest';
+import { describe, beforeEach, it, expect, vi } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 
 import { AuthProvider } from '@/contexts/AuthContext';
 import VillagerChat from '@/components/VillagerChat';
+
+vi.mock('@/data/languages', () => ({
+  useLanguages: () => ({
+    data: [
+      {
+        id: 'agariya',
+        name: 'Agariya',
+        family: 'Munda',
+        status: 'endangered',
+        speakers: 72000,
+        age: 'Unknown',
+        hello: 'Agariya',
+        origin: 'Fixture',
+        tribes: [],
+        alphabet: 'Devanagari',
+        commonPhrases: [],
+        countries: ['India'],
+        locations: [{ name: 'India', lat: 24.5024, lng: 82.297 }],
+        description: 'Fixture',
+      },
+    ],
+    isLoading: false,
+    error: null,
+  }),
+}));
 
 const renderVillagerChat = () => {
   return render(
