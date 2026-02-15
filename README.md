@@ -32,7 +32,9 @@ SECRET_KEY=add_your_secret_key_here
 
 ### 4. Run the application
 
-npm run dev
+1) Go to the frontendTest directory on your terminal.
+2) Type: npm install
+3) Type: npm run dev
 
 This will start the application on localhost by default and you may explore the application
 
