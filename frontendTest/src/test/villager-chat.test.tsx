@@ -49,7 +49,7 @@ describe('Villager chat', () => {
     renderVillagerChat();
 
     fireEvent.click(screen.getByTitle('Talk to the Villager'));
-    fireEvent.click(screen.getByRole('button', { name: '📜 Suggest a missing language' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Suggest a missing language' }));
     fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
     expect(screen.getByText('Name is required.')).toBeInTheDocument();
@@ -61,7 +61,7 @@ describe('Villager chat', () => {
     renderVillagerChat();
 
     fireEvent.click(screen.getByTitle('Talk to the Villager'));
-    fireEvent.click(screen.getByRole('button', { name: '📜 Suggest a missing language' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Suggest a missing language' }));
 
     fireEvent.change(screen.getByPlaceholderText('Your name'), { target: { value: 'Test User' } });
     fireEvent.change(screen.getByPlaceholderText('Your email'), { target: { value: 'test@example.com' } });

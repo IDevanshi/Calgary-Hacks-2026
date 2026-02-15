@@ -11,18 +11,24 @@ import {
   type ZoomTier,
 } from '@/lib/clusterMarkers';
 
-const statusLabels: Record<string, string> = {
-  active: 'Active',
-  endangered: 'Endangered',
-  vulnerable: 'Vulnerable',
-  extinct: 'Extinct',
-};
-
 const statusColors: Record<string, string> = {
   active: 'hsl(120, 50%, 35%)',
   endangered: 'hsl(0, 70%, 45%)',
   vulnerable: 'hsl(35, 80%, 50%)',
   extinct: 'hsl(270, 50%, 45%)',
+};
+
+const getStatusBucket = (status: string): keyof typeof statusColors => {
+  const normalized = status.toLowerCase();
+  if (normalized.includes('extinct') || normalized.includes('dormant')) return 'extinct';
+  if (normalized.includes('vulnerable')) return 'vulnerable';
+  if (normalized.includes('endangered')) return 'endangered';
+  return 'active';
+};
+
+const getStatusClass = (status: string): string => {
+  const bucket = getStatusBucket(status);
+  return `status-${bucket}`;
 };
 
 interface InteractiveMapProps {
@@ -74,7 +80,7 @@ const InteractiveMap = ({ flyTo, flyToLangId }: InteractiveMapProps) => {
           language: lang,
         }))
       ),
-    []
+    [languages]
   );
 
   const zoomTier: ZoomTier = useMemo(() => getZoomTier(altitude), [altitude]);
@@ -134,7 +140,7 @@ const InteractiveMap = ({ flyTo, flyToLangId }: InteractiveMapProps) => {
     }
 
     return clusteredPoints;
-  }, [searchQuery, activeLangFilter, clusteredPoints]);
+  }, [searchQuery, activeLangFilter, clusteredPoints, languages]);
 
   // Labels for country names when filtering or highlighting
   const countryLabels = useMemo(() => {
@@ -164,7 +170,7 @@ const InteractiveMap = ({ flyTo, flyToLangId }: InteractiveMapProps) => {
         label: lang.countries[i] || loc.name,
       }))
     );
-  }, [searchQuery, activeLangFilter, highlightedLang]);
+  }, [searchQuery, activeLangFilter, highlightedLang, languages]);
 
   // Resize
   useEffect(() => {
@@ -232,7 +238,7 @@ const InteractiveMap = ({ flyTo, flyToLangId }: InteractiveMapProps) => {
         setHighlightedLang(null);
       }, 8000);
     }
-  }, [flyToLangId]);
+  }, [flyToLangId, languages]);
 
   const handlePointClick = useCallback(
     (point: unknown) => {
@@ -267,7 +273,7 @@ const InteractiveMap = ({ flyTo, flyToLangId }: InteractiveMapProps) => {
       if (highlightedLang && cluster.markers.some((m) => m.language.id === highlightedLang)) {
         return 'hsl(200, 80%, 65%)';
       }
-      return statusColors[cluster.dominantStatus] || '#ffffff';
+      return statusColors[getStatusBucket(cluster.dominantStatus)] || '#ffffff';
     },
     [highlightedLang]
   );
@@ -323,7 +329,7 @@ const InteractiveMap = ({ flyTo, flyToLangId }: InteractiveMapProps) => {
       )
         .map(
           ([status, count]) =>
-            `<span style="color: ${statusColors[status]};">● ${statusLabels[status]}: ${count}</span>`
+            `<span style="color: ${statusColors[getStatusBucket(status)]};">● ${status}: ${count}</span>`
         )
         .join('<br/>');
 
@@ -352,7 +358,7 @@ const InteractiveMap = ({ flyTo, flyToLangId }: InteractiveMapProps) => {
     return languages
       .filter((l) => l.name.toLowerCase().includes(q) || l.family.toLowerCase().includes(q))
       .slice(0, 8);
-  }, [searchQuery]);
+  }, [searchQuery, languages]);
 
   const handleSearchSelect = (langId: string) => {
     const lang = languages.find((l) => l.id === langId);
@@ -382,11 +388,11 @@ const InteractiveMap = ({ flyTo, flyToLangId }: InteractiveMapProps) => {
   return (
     <div ref={containerRef} style={{ width: '100%', height: '100%', position: 'relative' }}>
       {/* Floating search bar */}
-      <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 w-72 md:w-96">
+      <div className="absolute top-3 left-1/2 -translate-x-1/2 z-[3000] w-72 md:w-96">
         <div className="minecraft-border bg-card px-3 py-2 flex items-center gap-2">
           <input
             type="text"
-            placeholder="🔍 Search languages..."
+            placeholder="Search languages..."
             value={searchQuery}
             onChange={(e) => handleSearchChange(e.target.value)}
             className="flex-1 bg-transparent font-pixel-body text-lg text-foreground placeholder:text-muted-foreground focus:outline-none"
@@ -418,21 +424,21 @@ const InteractiveMap = ({ flyTo, flyToLangId }: InteractiveMapProps) => {
       </div>
 
       {/* Zoom tier indicator */}
-      <div className="absolute top-3 left-3 z-10 minecraft-border bg-card px-3 py-1.5">
+      <div className="absolute top-3 left-3 z-[2500] minecraft-border bg-card px-3 py-1.5">
         <span className="font-pixel text-[7px] text-muted-foreground uppercase tracking-wider">
-          {zoomTier === 'global' && '🌍 Global View'}
-          {zoomTier === 'medium' && '🗺️ Regional View'}
-          {zoomTier === 'close' && '📍 Local View'}
+          {zoomTier === 'global' && 'Global View'}
+          {zoomTier === 'medium' && 'Regional View'}
+          {zoomTier === 'close' && 'Local View'}
         </span>
       </div>
 
       {/* Color legend */}
-      <div className="absolute bottom-4 left-3 z-10 minecraft-border bg-card px-3 py-2 space-y-1.5">
+      <div className="absolute bottom-4 left-3 z-[2500] minecraft-border bg-card px-3 py-2 space-y-1.5">
         <span className="font-pixel text-[7px] text-muted-foreground uppercase tracking-wider block mb-1">Legend</span>
         {Object.entries(statusColors).map(([status, color]) => (
           <div key={status} className="flex items-center gap-2">
             <span className="inline-block w-3 h-3 rounded-full" style={{ background: color }} />
-            <span className="font-pixel text-[7px] text-foreground">{statusLabels[status]}</span>
+            <span className="font-pixel text-[7px] text-foreground">{status}</span>
           </div>
         ))}
       </div>
@@ -465,6 +471,7 @@ const InteractiveMap = ({ flyTo, flyToLangId }: InteractiveMapProps) => {
           el.style.pointerEvents = 'none';
           el.style.whiteSpace = 'nowrap';
           el.style.transform = 'translate(-50%, -50%)';
+          el.style.zIndex = '1';
           el.textContent = labelData.label;
           return el;
         }}
@@ -473,7 +480,7 @@ const InteractiveMap = ({ flyTo, flyToLangId }: InteractiveMapProps) => {
       {/* Popup card for single marker */}
       {selectedMarker && (
         <div
-          className="absolute top-4 right-4 z-10 minecraft-border bg-card p-4"
+          className="absolute top-4 right-4 z-[2500] minecraft-border bg-card p-4"
           style={{ minWidth: 220, maxWidth: 280 }}
         >
           <button
@@ -487,9 +494,9 @@ const InteractiveMap = ({ flyTo, flyToLangId }: InteractiveMapProps) => {
           </p>
           <h3 className="font-pixel text-sm text-foreground mb-1">{selectedMarker.language.name}</h3>
           <span
-            className={`status-${selectedMarker.language.status} px-2 py-0.5 font-pixel text-[8px] inline-block mb-2`}
+            className={`${getStatusClass(selectedMarker.language.status)} px-2 py-0.5 font-pixel text-[8px] inline-block mb-2`}
           >
-            {statusLabels[selectedMarker.language.status]}
+            {selectedMarker.language.status}
           </span>
           <p className="font-pixel-body text-base text-muted-foreground mb-3 leading-snug">
             {selectedMarker.language.description.length > 100
@@ -498,13 +505,15 @@ const InteractiveMap = ({ flyTo, flyToLangId }: InteractiveMapProps) => {
           </p>
           <div className="flex items-center justify-between">
             <span className="font-pixel-body text-sm italic text-muted-foreground">
-              "{selectedMarker.language.hello.replace(/\(.*\)/, '').trim()}"
+              {selectedMarker.language.writingSystems && selectedMarker.language.writingSystems.length > 0
+                ? selectedMarker.language.writingSystems.join(', ')
+                : 'Unknown writing system'}
             </span>
             <button
               onClick={() => navigate(`/language/${selectedMarker.language.id}`)}
               className="minecraft-btn px-3 py-1 font-pixel text-[8px] text-foreground"
             >
-              Details →
+              Details
             </button>
           </div>
         </div>

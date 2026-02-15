@@ -17,7 +17,7 @@ const Navbar = () => {
       <div className="bg-minecraft-dirt minecraft-border px-4 py-3">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <Link to="/" className="font-pixel text-primary-foreground text-sm md:text-base tracking-wide hover:text-accent transition-colors">
-            ⛏ LinguaCraft
+            LinguaCraft
           </Link>
 
           <div className="flex items-center gap-3">
