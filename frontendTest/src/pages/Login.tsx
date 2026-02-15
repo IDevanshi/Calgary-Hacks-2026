@@ -25,7 +25,7 @@ const Login = () => {
       <Navbar />
       <main className="flex-1 flex items-center justify-center px-4">
         <div className="minecraft-border bg-card p-8 w-full max-w-sm">
-          <h1 className="font-pixel text-sm text-foreground text-center mb-2">⛏ Admin Login</h1>
+          <h1 className="font-pixel text-sm text-foreground text-center mb-2">Admin Login</h1>
           <p className="font-pixel-body text-lg text-muted-foreground text-center mb-6">
             Only admins can access this area.
           </p>

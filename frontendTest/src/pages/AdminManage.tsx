@@ -4,6 +4,14 @@ import Navbar from '@/components/Navbar';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguages } from '@/data/languages';
 
+const getStatusClass = (status: string): string => {
+  const normalized = status.toLowerCase();
+  if (normalized.includes('extinct') || normalized.includes('dormant')) return 'status-extinct';
+  if (normalized.includes('vulnerable')) return 'status-vulnerable';
+  if (normalized.includes('endangered')) return 'status-endangered';
+  return 'status-active';
+};
+
 const AdminManage = () => {
   const { isAdmin } = useAuth();
   const { data: languages = [], isLoading, error } = useLanguages();
@@ -20,7 +28,7 @@ const AdminManage = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
       <main className="flex-1 max-w-5xl mx-auto w-full px-4 py-8">
-        <h1 className="font-pixel text-lg text-foreground text-center mb-6">⚙️ Manage Languages</h1>
+        <h1 className="font-pixel text-lg text-foreground text-center mb-6">Manage Languages</h1>
 
         <div className="flex gap-2 mb-6 justify-center">
           <button
@@ -53,7 +61,7 @@ const AdminManage = () => {
               <div key={lang.id} className="minecraft-border bg-card p-4 flex items-center justify-between">
                 <div>
                   <span className="font-pixel text-xs text-foreground">{lang.name}</span>
-                  <span className={`status-${lang.status} px-2 py-0.5 font-pixel text-[8px] ml-3`}>
+                  <span className={`${getStatusClass(lang.status)} px-2 py-0.5 font-pixel text-[8px] ml-3`}>
                     {lang.status}
                   </span>
                   <span className="font-pixel-body text-base text-muted-foreground ml-3">
@@ -82,7 +90,7 @@ const AdminManage = () => {
         {tab === 'add' && (
           <div className="minecraft-border bg-card p-6">
             <p className="font-pixel-body text-xl text-muted-foreground text-center">
-              🚧 Add language form coming soon. Connect a backend to enable full CRUD operations.
+              Add language form coming soon. Connect a backend to enable full CRUD operations.
             </p>
           </div>
         )}

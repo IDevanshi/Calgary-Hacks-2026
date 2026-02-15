@@ -24,7 +24,7 @@ const LanguageArchive = () => {
 
       <main className="flex-1 max-w-6xl mx-auto w-full px-4 py-8">
         <h1 className="font-pixel text-lg md:text-xl text-foreground text-center mb-6">
-          📜 Language Archive
+          Language Archive
         </h1>
 
         <div className="mb-6 max-w-2xl mx-auto">

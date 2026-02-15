@@ -1,7 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 
-export type LanguageStatus = 'active' | 'endangered' | 'vulnerable' | 'extinct';
-
 export interface LanguageLocation {
   name: string;
   lat: number;
@@ -12,11 +10,12 @@ export interface Language {
   id: string;
   name: string;
   family: string;
-  status: LanguageStatus;
+  status: string;
   speakers: number;
   age: string;
   hello: string;
   origin: string;
+  languageFamily: string[];
   tribes: string[];
   alphabet: string;
   commonPhrases: { phrase: string; translation: string }[];
@@ -48,16 +47,6 @@ interface RawDatabaseLanguage {
 
 type RawLanguageCollection = RawDatabaseLanguage[] | Record<string, RawDatabaseLanguage>;
 
-const ENDANGERMENT_TO_STATUS: Record<string, LanguageStatus> = {
-  'not endangered': 'active',
-  vulnerable: 'vulnerable',
-  'definitely endangered': 'endangered',
-  'severely endangered': 'endangered',
-  'critically endangered': 'endangered',
-  extinct: 'extinct',
-  dormant: 'extinct',
-};
-
 const slugify = (value: string): string =>
   value
     .toLowerCase()
@@ -83,16 +72,9 @@ const parseCoordinate = (value: RawDatabaseLanguage['latitude']): number | null 
   return null;
 };
 
-const getStatus = (rawStatus: string | undefined, speakers: number): LanguageStatus => {
-  if (rawStatus) {
-    const mapped = ENDANGERMENT_TO_STATUS[rawStatus.toLowerCase().trim()];
-    if (mapped) return mapped;
-  }
-
-  if (speakers === 0) return 'extinct';
-  if (speakers < 100000) return 'endangered';
-  if (speakers < 1000000) return 'vulnerable';
-  return 'active';
+const getStatus = (rawStatus: string | undefined): string => {
+  if (rawStatus && rawStatus.trim()) return rawStatus.trim();
+  return 'unknown';
 };
 
 const getAlphabet = (raw: RawDatabaseLanguage): string => {
@@ -139,11 +121,12 @@ const normalizeLanguage = (raw: RawDatabaseLanguage, codeFromKey?: string): Lang
     id: raw.language_code?.trim() || codeFromKey || slugify(raw.language),
     name: raw.language,
     family: raw.language_family?.[0] || 'Unknown',
-    status: getStatus(raw.endangerment_status, speakers),
+    status: getStatus(raw.endangerment_status),
     speakers,
     age: getAge(raw),
     hello: raw.language,
     origin: summary,
+    languageFamily: raw.language_family || [],
     tribes: [],
     alphabet: getAlphabet(raw),
     commonPhrases: [],

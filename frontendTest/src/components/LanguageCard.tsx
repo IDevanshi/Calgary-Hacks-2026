@@ -2,11 +2,12 @@ import { Link } from 'react-router-dom';
 import { Globe } from 'lucide-react';
 import type { Language } from '@/data/languages';
 
-const statusLabels: Record<string, string> = {
-  active: 'Active',
-  endangered: 'Endangered',
-  vulnerable: 'Vulnerable',
-  extinct: 'Extinct',
+const getStatusClass = (status: string): string => {
+  const normalized = status.toLowerCase();
+  if (normalized.includes('extinct') || normalized.includes('dormant')) return 'status-extinct';
+  if (normalized.includes('vulnerable')) return 'status-vulnerable';
+  if (normalized.includes('endangered')) return 'status-endangered';
+  return 'status-active';
 };
 
 const LanguageCard = ({ language }: { language: Language }) => {
@@ -19,8 +20,8 @@ const LanguageCard = ({ language }: { language: Language }) => {
         <h3 className="font-pixel text-xs text-foreground uppercase group-hover:text-accent-foreground transition-colors">
           {language.name}
         </h3>
-        <span className={`status-${language.status} px-2 py-1 font-pixel text-[8px] shrink-0`}>
-          {statusLabels[language.status]}
+        <span className={`${getStatusClass(language.status)} px-2 py-1 font-pixel text-[8px] shrink-0`}>
+          {language.status}
         </span>
       </div>
       <div className="border-t border-border pt-3 mb-3">
@@ -31,7 +32,7 @@ const LanguageCard = ({ language }: { language: Language }) => {
       </p>
       <div className="border-t border-border pt-3 flex items-center justify-between">
         <span className="font-pixel-body text-base text-muted-foreground">
-          👥 {language.speakers > 0 ? language.speakers.toLocaleString() + ' speakers' : 'Extinct'}
+          {language.speakers > 0 ? language.speakers.toLocaleString() + ' speakers' : 'Extinct'}
         </span>
         <span className="font-pixel-body text-base text-muted-foreground flex items-center gap-1">
           <Globe className="w-3 h-3" />

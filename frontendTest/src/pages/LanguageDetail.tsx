@@ -2,13 +2,13 @@ import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguages } from '@/data/languages';
-import { Volume2 } from 'lucide-react';
 
-const statusLabels: Record<string, string> = {
-  active: 'Active',
-  endangered: 'Endangered',
-  vulnerable: 'Vulnerable',
-  extinct: 'Extinct',
+const getStatusClass = (status: string): string => {
+  const normalized = status.toLowerCase();
+  if (normalized.includes('extinct') || normalized.includes('dormant')) return 'status-extinct';
+  if (normalized.includes('vulnerable')) return 'status-vulnerable';
+  if (normalized.includes('endangered')) return 'status-endangered';
+  return 'status-active';
 };
 
 const LanguageDetail = () => {
@@ -59,14 +59,6 @@ const LanguageDetail = () => {
     );
   }
 
-  const speakHello = () => {
-    if ('speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(language.hello.replace(/\(.*\)/, '').trim());
-      utterance.rate = 0.8;
-      window.speechSynthesis.speak(utterance);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
@@ -86,8 +78,8 @@ const LanguageDetail = () => {
         <div className="flex flex-col md:flex-row items-start gap-6 mb-8">
           <div className="flex-1">
             <h1 className="font-pixel text-xl md:text-2xl text-foreground mb-3">{language.name}</h1>
-            <span className={`status-${language.status} px-3 py-1 font-pixel text-[10px] inline-block`}>
-              {statusLabels[language.status]}
+            <span className={`${getStatusClass(language.status)} px-3 py-1 font-pixel text-[10px] inline-block`}>
+              {language.status}
             </span>
             <p className="font-pixel-body text-xl text-muted-foreground mt-4">{language.description}</p>
           </div>
@@ -102,21 +94,16 @@ const LanguageDetail = () => {
                 </p>
               </div>
               <div>
-                <p className="font-pixel text-[8px] text-muted-foreground">Language Age</p>
-                <p className="font-pixel-body text-2xl text-foreground">{language.age}</p>
-              </div>
-              <div>
                 <p className="font-pixel text-[8px] text-muted-foreground">Countries</p>
                 <p className="font-pixel-body text-2xl text-foreground">{language.countries.length}</p>
               </div>
               <div>
-                <p className="font-pixel text-[8px] text-muted-foreground">Hello</p>
-                <div className="flex items-center gap-2">
-                  <p className="font-pixel-body text-xl text-foreground">{language.hello}</p>
-                  <button onClick={speakHello} className="minecraft-btn p-1" title="Hear pronunciation">
-                    <Volume2 className="w-4 h-4 text-foreground" />
-                  </button>
-                </div>
+                <p className="font-pixel text-[8px] text-muted-foreground">Writing System</p>
+                <p className="font-pixel-body text-xl text-foreground">
+                  {language.writingSystems && language.writingSystems.length > 0
+                    ? language.writingSystems.join(', ')
+                    : 'Unknown'}
+                </p>
               </div>
             </div>
           </div>
@@ -124,13 +111,16 @@ const LanguageDetail = () => {
 
         {/* Origin */}
         <section className="minecraft-border bg-card p-5 mb-4">
-          <h2 className="font-pixel text-sm text-foreground mb-3">📖 Origin</h2>
+          <h2 className="font-pixel text-sm text-foreground mb-3">Origin</h2>
+          <p className="font-pixel-body text-xl text-foreground leading-relaxed mb-3">
+            Language family: {language.languageFamily.length > 0 ? language.languageFamily.join(' > ') : language.family}
+          </p>
           <p className="font-pixel-body text-xl text-foreground leading-relaxed">{language.origin}</p>
         </section>
 
         {/* Tribes */}
         <section className="minecraft-border bg-card p-5 mb-4">
-          <h2 className="font-pixel text-sm text-foreground mb-3">🏘️ Tribes & Peoples</h2>
+          <h2 className="font-pixel text-sm text-foreground mb-3">Tribes and Peoples</h2>
           <div className="flex flex-wrap gap-2">
             {language.tribes.map((tribe) => (
               <span key={tribe} className="font-pixel-body text-lg text-foreground px-3 py-1 bg-muted/50">
@@ -142,21 +132,8 @@ const LanguageDetail = () => {
 
         {/* Alphabet */}
         <section className="minecraft-border bg-card p-5 mb-4">
-          <h2 className="font-pixel text-sm text-foreground mb-3">🔤 Alphabet</h2>
+          <h2 className="font-pixel text-sm text-foreground mb-3">Alphabet</h2>
           <p className="font-pixel-body text-2xl text-foreground tracking-wider leading-loose">{language.alphabet}</p>
-        </section>
-
-        {/* Common phrases */}
-        <section className="minecraft-border bg-card p-5 mb-4">
-          <h2 className="font-pixel text-sm text-foreground mb-3">💬 Common Words & Phrases</h2>
-          <div className="space-y-2">
-            {language.commonPhrases.map((cp, i) => (
-              <div key={i} className="flex justify-between items-center p-2 bg-muted/50">
-                <span className="font-pixel-body text-xl text-foreground">{cp.phrase}</span>
-                <span className="font-pixel-body text-lg text-muted-foreground">{cp.translation}</span>
-              </div>
-            ))}
-          </div>
         </section>
 
         {/* Dictionary button */}
@@ -171,14 +148,14 @@ const LanguageDetail = () => {
             rel="noopener noreferrer"
             className="minecraft-btn w-full px-4 py-3 font-pixel text-xs text-foreground block text-center"
           >
-            📚 Open Dictionary (Wikipedia)
+            Open Dictionary (Wikipedia)
           </a>
         </div>
 
         {/* Locations & Countries */}
         <section className="minecraft-border bg-card p-5 mb-4">
           <h2 className="font-pixel text-sm text-foreground mb-3">
-            🌍 Countries ({language.countries.length})
+            Countries ({language.countries.length})
           </h2>
           <div className="flex flex-wrap gap-2">
             {language.countries.map((country, i) => (
