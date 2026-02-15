@@ -23,6 +23,19 @@ const AdminManage = () => {
     [languages]
   );
 
+  const handleDelete = async (id: string) => {
+  try {
+    await fetch(`http://localhost:3001/languages/${id}`, {
+      method: "DELETE",
+    });
+
+    window.location.reload(); // quick refresh
+  } catch (err) {
+    console.error("Failed to delete", err);
+  }
+  };
+
+
   if (!isAdmin) return <Navigate to="/login" replace />;
 
   return (
@@ -79,7 +92,10 @@ const AdminManage = () => {
                   <button className="minecraft-btn px-3 py-1 font-pixel text-[8px] text-foreground">
                     Edit
                   </button>
-                  <button className="minecraft-btn px-3 py-1 font-pixel text-[8px] text-destructive">
+                  <button
+                    onClick={() => handleDelete(lang.id)}
+                    className="minecraft-btn px-3 py-1 font-pixel text-[8px] text-destructive"
+                  >
                     Remove
                   </button>
                 </div>
@@ -91,7 +107,7 @@ const AdminManage = () => {
         {tab === 'add' && (
           <div className="minecraft-border bg-card p-6">
             <p className="font-pixel-body text-xl text-muted-foreground text-center">
-              Add language form coming soon. Connect a backend to enable full CRUD operations.
+              Add language form coming soon.
             </p>
           </div>
         )}
