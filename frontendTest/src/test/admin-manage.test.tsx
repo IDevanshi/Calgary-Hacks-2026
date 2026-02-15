@@ -59,7 +59,7 @@ describe('Admin manage route', () => {
 
     renderAdminManage();
 
-    expect(screen.getByText('⚙️ Manage Languages')).toBeInTheDocument();
+    expect(screen.getByText('Manage Languages')).toBeInTheDocument();
     expect(screen.getByText('Agariya')).toBeInTheDocument();
   });
 });
